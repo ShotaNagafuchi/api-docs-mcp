@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+setup.py
+src/api_docs_mcp.egg-info/PKG-INFO
+src/api_docs_mcp.egg-info/SOURCES.txt
+src/api_docs_mcp.egg-info/dependency_links.txt
+src/api_docs_mcp.egg-info/requires.txt
+src/api_docs_mcp.egg-info/top_level.txt
+src/crawler/__init__.py
+src/crawler/crawler.py
+src/crawler/parser.py
+src/mcp/__init__.py
+src/mcp/resources.py
