@@ -22,6 +22,7 @@ async def main():
     parser = argparse.ArgumentParser(description='API documentation MCP server')
     parser.add_argument('--url', required=True, help='URL of the API documentation to crawl')
     parser.add_argument('--port', type=int, default=8000, help='Port to run the MCP server on')
+    parser.add_argument('--uds-perms', type=str, default='0o660', help='Unix Domain Socket permissions (default: 0o660)')
     args = parser.parse_args()
     
     # Initialize the repository
@@ -34,8 +35,11 @@ async def main():
     logger.info(f"Crawling API documentation from {args.url}")
     await crawler.crawl(args.url)
     
-    # Initialize the MCP server
-    mcp = FastMCP(port=args.port)
+    # Initialize the MCP server with secure Unix Domain Socket permissions
+    mcp = FastMCP(
+        port=args.port,
+        uds_perms=int(args.uds_perms, 8)  # Convert octal string to int
+    )
     
     # Register resources
     register_resources(mcp, repository)
